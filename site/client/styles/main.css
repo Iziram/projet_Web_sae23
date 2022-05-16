@@ -2,3 +2,8 @@
     padding-left: 4px !important;
     padding-right: 4px !important;
 }
+
+.err{
+    color: firebrick;
+    font-size: 1.6em;
+}

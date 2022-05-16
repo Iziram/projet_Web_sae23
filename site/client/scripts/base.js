@@ -38,3 +38,44 @@ function getAllProducts(selector = "") {
         }
     );
 }
+
+function testConnectForm(){
+    const login = document.getElementById("login").value;
+    const pass = document.getElementById("pass").value;
+    const testLogin =  /^[a-z0-9._-]+@[a-z0-9.-]{2,}[.][a-z]{2,8}$/.test(login);
+    const testPass =  /^[A-z0-9._\-&@]{8,}$/.test(pass);
+    
+    if(!testLogin && !testPass){
+        swal({
+            title: "Oh non des erreurs",
+            text: "Attention votre email n'est pas valide.\n Attention votre mot de passe n'est pas valide. Il doit avoir au minimum 8 caractères ( lettres, chiffres, caractère spéciaux : @.-_& ).",
+            icon: "error",
+            button: "J'ai compris",
+          });
+    }
+    else if(!testLogin){
+        swal({
+            title: "Oh non une erreur",
+            text: "Attention votre email n'est pas valide.",
+            icon: "error",
+            button: "J'ai compris",
+          });
+    }
+    else if(!testPass){
+        swal({
+            title: "Oh non une erreur",
+            text: "Attention votre mot de passe n'est pas valide. Il doit avoir au minimum 8 caractères ( lettres, chiffres, caractère spéciaux : @.-_& ).",
+            icon: "error",
+            button: "J'ai compris",
+          });
+    }
+    return testLogin && testPass;
+}
+
+
+function openProfil(){
+    const instance = M.Sidenav.getInstance(document.getElementById("slide-out"));
+    if(instance){
+        instance.open();
+    }
+}
