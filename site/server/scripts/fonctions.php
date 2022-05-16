@@ -9,12 +9,13 @@ function connexionToApp($login, $pass){
         true
     );
 
-    var_dump($res);
     if($res){
         $_SESSION["login"] = $login;
         $_SESSION["statut"] = $res["statut"];
+        writeLog("Connexion réussie pour l'utilisateur : $qlogin [statut :".$res["statut"]."]");
         return true;
     }
+    writeLog("Connexion refusée pour l'utilisateur : $qlogin");
 
     return false;
 }

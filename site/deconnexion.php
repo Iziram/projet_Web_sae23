@@ -9,11 +9,19 @@ if(!empty($_SESSION)){
     ?>
 
     <script>
-        swal({
+        Swal.fire({
             title: "Vous avez été déconnecté",
-            text: "Cliquer sur OK pour retourner à la page de connexion.",
+            text: "Vous allez être redirigé vers la page de connexion.",
             icon: "success",
             button: "OK",
+            timer: 5000,
+            timerProgressBar : true,
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
           }).then(
               ()=>{
                   window.location = "connexion.php";
@@ -26,11 +34,19 @@ if(!empty($_SESSION)){
     ?>
 
     <script>
-        swal({
+        Swal.fire({
             title: "Vous êtes déjà déconnecté",
-            text: "Cliquer sur OK pour retourner à la page de connexion.",
+            text: "Vous allez être redirigé vers la page de connexion.",
             icon: "info",
             button: "OK",
+            timer: 5000,
+            timerProgressBar : true,
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
           }).then(
               ()=>{
                   window.location = "connexion.php";

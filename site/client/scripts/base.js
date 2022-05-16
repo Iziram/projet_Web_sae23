@@ -46,27 +46,45 @@ function testConnectForm(){
     const testPass =  /^[A-z0-9._\-&@]{8,}$/.test(pass);
     
     if(!testLogin && !testPass){
-        swal({
+        Swal.fire({
             title: "Oh non des erreurs",
-            text: "Attention votre email n'est pas valide.\n Attention votre mot de passe n'est pas valide. Il doit avoir au minimum 8 caractères ( lettres, chiffres, caractère spéciaux : @.-_& ).",
+            html: "<p>Attention votre email n'est pas valide.</p><p>Attention votre mot de passe n'est pas valide. Il doit avoir au minimum 8 caractères ( lettres, chiffres, caractère spéciaux : @.-_& ).</p>",
             icon: "error",
             button: "J'ai compris",
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
           });
     }
     else if(!testLogin){
-        swal({
+        Swal.fire({
             title: "Oh non une erreur",
             text: "Attention votre email n'est pas valide.",
             icon: "error",
             button: "J'ai compris",
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
           });
     }
     else if(!testPass){
-        swal({
+        Swal.fire({
             title: "Oh non une erreur",
             text: "Attention votre mot de passe n'est pas valide. Il doit avoir au minimum 8 caractères ( lettres, chiffres, caractère spéciaux : @.-_& ).",
             icon: "error",
             button: "J'ai compris",
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
           });
     }
     return testLogin && testPass;
@@ -74,8 +92,10 @@ function testConnectForm(){
 
 
 function openProfil(){
-    const instance = M.Sidenav.getInstance(document.getElementById("slide-out"));
-    if(instance){
+    const slide = document.getElementById("slide-out");
+    if(slide){
+        const instance = M.Sidenav.getInstance(slide);
         instance.open();
     }
 }
+

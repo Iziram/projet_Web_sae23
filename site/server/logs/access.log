@@ -1,1 +1,4 @@
 # [day-month-year] @ip -> [Tentative connexion / connexion réussie / connexion échouée]
+[16-05-2022 18:49:45] 127.0.0.1 Connexion refusée pour l'utilisateur : 't.t@f' 
+[16-05-2022 19:03:34] 127.0.0.1 Connexion réussie pour l'utilisateur : 'admin@admin.fr' [statut :admin] 
+[16-05-2022 19:06:44] 127.0.0.1 Connexion réussie pour l'utilisateur : 'admin@admin.fr' [statut :admin] 

@@ -14,11 +14,19 @@ session_start();
         if($res){
             ?>
             <script>
-                swal({
+                Swal.fire({
                     title: "Vous êtes désormais connecté.",
-                    text: "Cliquer sur OK pour être redirigé sur le site",
+                    text: "Vous allez être redirigé sur le site",
                     icon: "success",
                     button: "OK",
+                    timer: 5000,
+                    timerProgressBar : true,
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
                 }).then((value)=>{
                     window.location = "index.php";
                 });
@@ -27,15 +35,44 @@ session_start();
         }else{
             ?>
             <script>
-                swal({
+                Swal.fire({
                     title: "Connexion Refusée",
                     text: "Le couple identifiant / mot de passe n'existe pas ou est incorrecte.",
                     icon: "error",
                     button: "J'ai compris",
+                    timer: 5000,
+                    timerProgressBar : true,
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
                 });
             </script>
             <?php
         }
+    }else if(!empty($_SESSION) && isset($_SESSION["login"])){
+        ?>
+            <script>
+                Swal.fire({
+                    title: "Vous êtes déjà connecté.",
+                    text: "Vous allez être redirigé sur le site",
+                    icon: "success",
+                    button: "OK",
+                    timer: 5000,
+                    timerProgressBar : true,
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInDown'
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutUp'
+                    }
+                }).then((value)=>{
+                    window.location = "index.php";
+                });
+            </script>
+            <?php
     }
 
 ?>
