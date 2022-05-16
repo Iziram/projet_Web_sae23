@@ -1,40 +1,42 @@
-function ajax(params = {type : "error"}, success, error, url = 'server/scripts/ajax.php', method = 'post'){
+function ajax(params = {
+    type: "error"
+}, success, error, url = 'server/scripts/ajax.php', method = 'post') {
 
-    if(window.fetch){
+    if (window.fetch) {
         let header = {
-            method : method,
-            body :JSON.stringify(params),
-            headers : {
-                'Content-Type' : 'application/json'
+            method: method,
+            body: JSON.stringify(params),
+            headers: {
+                'Content-Type': 'application/json'
             }
         };
         fetch(url,
-            header
-        ).then(ans => ans.json())
-        .then( ans => {
-            if(ans.type != "Error"){
-                success(ans);
-            }else{
-                error(ans);
-            }
-        }).catch(err => {
-            console.log(err);
-        })
+                header
+            ).then(ans => ans.json())
+            .then(ans => {
+                if (ans.type != "Error") {
+                    success(ans);
+                } else {
+                    error(ans);
+                }
+            }).catch(err => {
+                console.log(err);
+            })
 
-    }else{
+    } else {
         let req = null;
-        if(window.XMLHttpRequest){
+        if (window.XMLHttpRequest) {
             req = new XMLHttpRequest();
-        }else if(typeof ActiveXObject != "undefined"){
+        } else if (typeof ActiveXObject != "undefined") {
             req = new ActiveXObject("Microsoft.XMLHTTP");
         }
 
-        if(req){
-            req.onreadystatechange = function (){
+        if (req) {
+            req.onreadystatechange = function() {
                 let ready = req.readyState;
-                if(ready == 4){
+                if (ready == 4) {
                     const status = req.status;
-                    if(status == 200){
+                    if (status == 200) {
                         const json = JSON.parse(req.responseText);
                         console.log(json);
                         success(json);
@@ -42,16 +44,16 @@ function ajax(params = {type : "error"}, success, error, url = 'server/scripts/a
                 }
             }
             req.open(method, url, true);
-            if(method != "post")
+            if (method != "post")
                 req.send(null);
             else
                 req.setRequestHeader("Content-Type", "application/json");
-                
-                req.send(JSON.stringify(params));
-            
+
+            req.send(JSON.stringify(params));
+
 
         }
     }
 
-    
+
 }
