@@ -1,13 +1,13 @@
 function ajax(params = {
     type: "error"
-}, success, error, url = 'server/scripts/ajax.php', method = 'post') {
+}, success, error, url = 'server/scripts/ajax.php', method = 'post', contentType = 'application/json') {
 
     if (window.fetch) {
         let header = {
             method: method,
             body: JSON.stringify(params),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': contentType
             }
         };
         fetch(url,
@@ -47,7 +47,7 @@ function ajax(params = {
             if (method != "post")
                 req.send(null);
             else
-                req.setRequestHeader("Content-Type", "application/json");
+                req.setRequestHeader("Content-Type", contentType);
 
             req.send(JSON.stringify(params));
 
