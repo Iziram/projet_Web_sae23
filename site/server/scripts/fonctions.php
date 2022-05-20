@@ -28,4 +28,33 @@ function formatInput($data)
 	return $data;
 }
 
+function blockerPage(){
+    if(empty($_SESSION) || !isset($_SESSION["login"])){
+        ?>
+
+    <script>
+        Swal.fire({
+            title: "Vous êtes déconnecté",
+            text: "Vous allez être redirigé vers la page de connexion.",
+            icon: "error",
+            button: "OK",
+            timer: 5000,
+            timerProgressBar : true,
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+          }).then(
+              ()=>{
+                  window.location = "connexion.php";
+              }
+          );
+    </script>
+
+    <?php
+    }
+}
+
 ?>

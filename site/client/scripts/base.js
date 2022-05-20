@@ -99,3 +99,32 @@ function openProfil(){
     }
 }
 
+
+
+function infoUtilisateur(){
+    ajax(
+        {
+            type : "infoUtilisateur",
+            login : "uti@uti.fr"
+        },
+        (json)=>{
+
+            Swal.fire({
+                title: `Bienvenu ${json.content.login}`,
+                text: "Vous allez être redirigé vers la page de connexion.",
+                icon: "info",
+                button: "OK",
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+              });
+        },
+        (json)=>{
+            console.error(json)
+        }
+    
+    );
+}

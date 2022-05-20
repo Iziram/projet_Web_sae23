@@ -14,6 +14,14 @@ if($contentType === "application/json"){
                 else
                     answerCreator("Erreur SQL");
                 break;
+
+            case "infoUtilisateur":
+                $ans = callDatabase("select login,statut from Comptes where login=".quote($decoded["login"]),true);
+                if($ans)
+                    answerCreator($ans, false);
+                else
+                    answerCreator("Erreur SQL");
+                break;
             default :
                 answerCreator("Le type donné n'est pas reconnu.");
                 break;
