@@ -9,10 +9,15 @@ function callDatabase($sql, $unique = false, $select = true){
     }
 
     if($res){
-        if($unique){
-            return $res->fetch(PDO::FETCH_ASSOC);
-        }else{
-            return $res->fetchAll(PDO::FETCH_ASSOC);
+        if($select){
+            if($unique){
+                return $res->fetch(PDO::FETCH_ASSOC);
+            }else{
+                return $res->fetchAll(PDO::FETCH_ASSOC);
+            }
+        }
+        else{
+            return true;
         }
     }else{
         return false;

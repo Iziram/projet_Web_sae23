@@ -1,4 +1,4 @@
-function getAllProducts(selector = "") {
+function getAllProducts(selector = "", strict = false) {
     ajax({
             type: "getProducts"
         },
@@ -9,12 +9,22 @@ function getAllProducts(selector = "") {
             const ul = document.createElement("ul");
             ul.classList.add("collection");
             produits.forEach(element => {
-                if (selector.split(" ").some(
+                let testSelector = false;
+                if(strict){
+                    testSelector = selector.split(" ").every(
                         (select) => {
-                            console.log(select, element.NomP.toLowerCase().includes(select.toLowerCase()));
                             return element.NomP.toLowerCase().includes(select.toLowerCase());
                         }
-                    )) {
+                    );
+                }else{
+                    testSelector = selector.split(" ").some(
+                        (select) => {
+                            return element.NomP.toLowerCase().includes(select.toLowerCase());
+                        }
+                    );
+                }
+
+                if (testSelector) {
                     const pdt = document.createElement('li');
                     pdt.classList.add("collection-item");
                     const title = document.createElement("span");
@@ -37,57 +47,6 @@ function getAllProducts(selector = "") {
             console.error(json);
         }
     );
-}
-
-function testConnectForm(){
-    const login = document.getElementById("login").value;
-    const pass = document.getElementById("pass").value;
-    const testLogin =  /^[a-z0-9._-]+@[a-z0-9.-]{2,}[.][a-z]{2,8}$/.test(login);
-    const testPass =  /^[A-z0-9._\-&@]{8,}$/.test(pass);
-    
-    if(!testLogin && !testPass){
-        Swal.fire({
-            title: "Oh non des erreurs",
-            html: "<p>Attention votre email n'est pas valide.</p><p>Attention votre mot de passe n'est pas valide. Il doit avoir au minimum 8 caractères ( lettres, chiffres, caractère spéciaux : @.-_& ).</p>",
-            icon: "error",
-            button: "J'ai compris",
-            showClass: {
-                popup: 'animate__animated animate__fadeInDown'
-            },
-            hideClass: {
-                popup: 'animate__animated animate__fadeOutUp'
-            }
-          });
-    }
-    else if(!testLogin){
-        Swal.fire({
-            title: "Oh non une erreur",
-            text: "Attention votre email n'est pas valide.",
-            icon: "error",
-            button: "J'ai compris",
-            showClass: {
-                popup: 'animate__animated animate__fadeInDown'
-            },
-            hideClass: {
-                popup: 'animate__animated animate__fadeOutUp'
-            }
-          });
-    }
-    else if(!testPass){
-        Swal.fire({
-            title: "Oh non une erreur",
-            text: "Attention votre mot de passe n'est pas valide. Il doit avoir au minimum 8 caractères ( lettres, chiffres, caractère spéciaux : @.-_& ).",
-            icon: "error",
-            button: "J'ai compris",
-            showClass: {
-                popup: 'animate__animated animate__fadeInDown'
-            },
-            hideClass: {
-                popup: 'animate__animated animate__fadeOutUp'
-            }
-          });
-    }
-    return testLogin && testPass;
 }
 
 

@@ -3,13 +3,11 @@ session_start();
     include('client/pages/header.html');
     include("server/scripts/fonctions.php");
     include("server/scripts/log.php");
-    include("server/scripts/bdd.php");
 
 
     if(!empty($_POST) && isset($_POST["login"]) && isset($_POST["pass"])){
         $login = formatInput($_POST["login"]);
         $pass = formatInput($_POST["pass"]);
-
         $res = connexionToApp($login,$pass);
         if($res){
             ?>
@@ -76,17 +74,18 @@ session_start();
     }
 
 ?>
-
+<script src="client/scripts/verifications.js"></script>
 <form class="container" action="" method="post" onsubmit="return testConnectForm()">
 
 <label for="login">Login: </label>
-<input type="email" name="login" id="login" placeholder="Nom d'utilisateur" required/>
-<p class="err" id="errLogin"></p>
+<input type="text" name="login" id="login" placeholder="Nom d'utilisateur" required onkeyup="verifierLogin(this.value)"/>
+<div id="progressBar_login_div" class="progress hid" name="progressBar">
+    <div id="progressBar_login_bar"class="determinate" style="width: 50%"></div>
+</div>
+<p id="progressBar_login_text" class="hid" name="progressBar"></p>
 
 <label for="pass">Mot de passe: </label>
 <input type="password" name="pass" id="pass" required/>
-<p class="err" id="errPass"></p>
-
 
 <input class="btn" type="submit" value="Se connecter"/>
 </form>

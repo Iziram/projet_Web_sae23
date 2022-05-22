@@ -4,7 +4,6 @@
     include('server/scripts/fonctions.php');
     blockerPage();
     echo '<h1 class="center-align">Titre</h1>';
-    echo '<p id="label">Label : </p>';
     ?>
 
  <script src="client/scripts/ajax.js"></script>
@@ -33,9 +32,16 @@
   });
    </script>
 
- <input type="text" id="bob" />
- <button onclick="getAllProducts(document.getElementById('bob').value)">ajax</button>
- <button class="btn" onclick="infoUtilisateur()">info</button>
+  <div class="container center">
+    <input type="text" id="selector" />
+    <p>
+      <label>
+        <input id="strict" type="checkbox" class="filled-in"/>
+        <span>Contient strictement</span>
+      </label>
+    </p>
+    <button class="btn" onclick="getAllProducts(document.getElementById('selector').value, document.getElementById('strict').checked)">ajax</button>
+  </div>
  <div id="placer">
 
  </div>
