@@ -44,3 +44,8 @@
 [22-05-2022 10:21:05] ::1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
 [22-05-2022 11:45:21] ::1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
 [22-05-2022 12:17:53] ::1 Connexion refusée pour l'utilisateur : 'Admin*' 
+[23-05-2022 15:14:11] 127.0.0.1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
+[23-05-2022 15:18:46] 127.0.0.1 Connexion refusée pour l'utilisateur : 'Benoit*' 
+[23-05-2022 15:19:05] 127.0.0.1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
+[23-05-2022 15:57:41] 127.0.0.1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 
+[23-05-2022 17:18:06] ::1 Connexion réussie pour l'utilisateur : 'Admin*' [statut :admin] 

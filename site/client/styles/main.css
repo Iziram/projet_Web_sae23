@@ -4,3 +4,8 @@
 lottie-player {
     margin: 0 auto;
 }
+
+.img{
+    width: 19% !important;
+    height: 19% !important;
+}

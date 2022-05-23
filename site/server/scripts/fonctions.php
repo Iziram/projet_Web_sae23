@@ -141,4 +141,30 @@ function blockerPage($needAdmin = false){
     }
 }
 
+function sideBar(){
+    $statut =  $_SESSION["statut"] == "admin" ? "Administrateur" : "Utilisateur";
+    ?>
+    <ul id="slide-out" class="sidenav">
+    <li><div class="user-view center">
+      <!-- <a href="#user"><img class="circle" src="images/yuna.jpg"></a> -->
+      <a href="#email"><span class="dark-text email"><?php echo $_SESSION["login"];?></span></a>
+      <a href="#name"><span class="dark-text name"><?php echo $statut;?></span></a>
+    </div></li>
+    <li><a href="#!"><i class="material-icons">home</i>Accueil</a></li>
+    <li><a href="#!"><i class="material-icons">celebration</i>Promotions</a></li>
+    <li><div class="divider"></div></li>
+    <br/>
+    <div class="center">
+        <a class="btn purple" href="deconnexion.php"><i class="material-icons">logout</i>deconnexion</a>
+    </div>
+  </ul>
+   <script>
+      document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems);
+  });
+   </script>
+    <?php
+}
+
 ?>

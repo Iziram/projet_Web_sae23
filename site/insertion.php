@@ -5,6 +5,7 @@
     blockerPage(true, "index.php");
 ?>
 
+<?php sideBar()?>
 
 <?php
 
