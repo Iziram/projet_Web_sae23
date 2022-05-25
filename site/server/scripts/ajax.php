@@ -22,6 +22,24 @@ if($contentType === "application/json"){
                 else
                     answerCreator("Erreur SQL");
                 break;
+            
+            case "categoProduits":
+                $types = callDatabase("select distinct type from Produits");
+                $materiaux = callDatabase("select distinct materiaux from Produits");
+                $prices = callDatabase("select max(prix)as maxi, min(prix) as mini from Produits",true);
+
+                if($types && $materiaux && $prices){
+                    $ans = array(
+                        "types" => $types,
+                        "materiaux" => $materiaux,
+                        "prix" => $prices
+                    );
+                    answerCreator($ans, false);
+                }
+                else
+                    answerCreator("Erreur SQL");
+                break;
+            
             default :
                 answerCreator("Le type donné n'est pas reconnu.");
                 break;

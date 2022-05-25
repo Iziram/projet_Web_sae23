@@ -144,7 +144,7 @@ function blockerPage($needAdmin = false){
 function sideBar(){
     $statut =  $_SESSION["statut"] == "admin" ? "Administrateur" : "Utilisateur";
     ?>
-    <ul id="slide-out" class="sidenav">
+    <ul id="profil" class="sidenav">
     <li><div class="user-view center">
       <!-- <a href="#user"><img class="circle" src="images/yuna.jpg"></a> -->
       <a href="#email"><span class="dark-text email"><?php echo $_SESSION["login"];?></span></a>
@@ -160,10 +160,73 @@ function sideBar(){
   </ul>
    <script>
       document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems);
+    var elem = document.getElementById('profil');
+    var instances = M.Sidenav.init(elem, {edge : "right"});
   });
    </script>
+    <?php
+}
+
+function generateDynamicProductList(){
+    ?>
+   <ul id="test" class="sidenav">
+      <li><a href="#!">First Sidebar Link</a></li>
+      <li><a href="#!">Second Sidebar Link</a></li>
+      <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+          <li>
+            <a class="collapsible-header">Type<i class="material-icons">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+              <ul id="type">
+                
+              </ul>
+            </div>
+          </li>
+          <li>
+            <a class="collapsible-header">Matériaux<i class="material-icons">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+              <ul id="mat">
+                
+              </ul>
+            </div>
+          </li>
+          <li>
+            <a class="collapsible-header">Prix<i class="material-icons">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li class="container center">
+                    <br>
+                    <div id="test-slider" class="slider-round"></div>
+                    <span id="min" class="hoverable">A</span><span>|</span><span id="max" class="hoverable">B</span>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+
+
+    <div class="row container" id="placer">
+
+    </div>
+    <script>
+        
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.getElementById('test');
+    var instances = M.Sidenav.init(elems);
+  });
+
+  // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
+  var collapsibleElem = document.querySelector('.collapsible');
+  var collapsibleInstance = M.Collapsible.init(collapsibleElem);
+
+    dynamicFilter();
+    fullProducts().then((value)=>{
+        showProducts(value);
+    }, (value)=>console.error(value))
+    </script>
     <?php
 }
 
