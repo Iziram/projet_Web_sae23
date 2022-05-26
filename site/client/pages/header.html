@@ -33,11 +33,10 @@
     <nav>
         <div class="nav-wrapper purple accent-3">
             <a class="brand-logo left"><img class="img" src="client/images/or.svg" alt="logo"></a>
-            <ul class="right">
-                <li><a href="#" onclick="test()"><i class="material-icons">search</i></a></li>
-                <li><a href="#"><i class="material-icons">view_module</i></a></li>
-                <li><a href="#"><i class="material-icons">shopping_cart</i></a></li>
-                <li><a href="#" onclick="openProfil()"><i class="material-icons">more_vert</i></a></li>
+            <ul class="right" id="navIcons">
+                <script>
+                    populateNavBarIcons();
+                </script>
             </ul>
         </div>
     </nav>

@@ -12,18 +12,20 @@
 $nomPdt = "";
 $prixPdt = "";
 $promoPdt = "off";
+$path = "";
+$type = "";
+$mat = "";
 
 if(!empty($_POST)){
     $nomPdt = isset($_POST["nom"]) ? $_POST["nom"] : "";
     $prixPdt = isset($_POST["prix"]) ? $_POST["prix"] : "";
+    $type = isset($_POST["selectType"]) ? $_POST["selectType"] : "";
+    $mat = isset($_POST["selectMat"]) ? $_POST["selectMat"] : "";
     $promoPdt = isset($_POST["promo"]) ? $_POST["promo"] : "off";
+    $path = isset($_POST["filePath"]) ? $_POST["filePath"] : "";
     if(isset($_POST["captcha"]) && $_POST["captcha"] == $_SESSION["captcha"] ){
-
-        $sql = "";
-        if($promoPdt == "on" && $prixPdt != "" && $nomPdt != ""){
-            $call = addProduct($nomPdt, $prixPdt, $promoPdt);
-        }else{
-            //Do something
+        if($prixPdt != "" && $nomPdt != "" && $type != "" && $mat != "" && $path != ""){
+            $call = addProduct($nomPdt, $prixPdt, $promoPdt, $type, $mat, $path);
         }
         
 
@@ -49,13 +51,14 @@ if(!empty($_POST)){
     }
 }
 
-
+$types = callDatabase("select distinct type from Produits");
+$materiaux = callDatabase("select distinct materiaux from Produits");
 ?>
 
 
 <h1 class="center">Ajouter un produit</h1>
 
-<form class="container" action="" method="post">
+<form class="container" action="" method="post" enctype="multipart/form-data">
     <div class="row">
         <div class= "input-field col s5">
             <label for="nomPdt">Nom du produit : </label>
@@ -63,27 +66,61 @@ if(!empty($_POST)){
         </div>
         <div class= "input-field col s5">
             <label for="prixPdt">Prix du produit : </label>
-            <input id="prixPdt" name ="prix" type="number" step="0.01" placeholder="Collier avec Emeraude" value="<?php echo $prixPdt;?>"/>
+            <input id="prixPdt" name ="prix" type="number" step="0.01" placeholder="6940.69" value="<?php echo $prixPdt;?>"/>
         </div>
-        <div class= "input-field col s2">
-        <p>
-            <label>
+    </div>
+    <div class="row">
+        <div class="input-field col s5">
+            <select id="selectType" name="selectType" class="selectable">
+                <option value="" disabled selected>Type de produit</option>
                 <?php
-                if($promoPdt == "on"){
-                    ?>
-                    <input type="checkbox" class="filled-in" name="promo" checked/>
-                    <?php
-                }else{
-                    ?>
-                    <input type="checkbox" class="filled-in" name="promo"/>
-                    <?php
+                if($types){
+                    foreach($types as $value){
+                        echo '<option value="'.$value["type"].'">'.$value["type"].'</option>';
+                    }
                 }
-
                 ?>
-                <span>En Promotion</span>
-            </label>
-        </p>
+            </select>
+            <label>Type</label>
         </div>
+        <div class="input-field col s5">
+            <select id="selectMat" name="selectMat" class="selectable">
+                <option value="" disabled selected>Type de Matériaux</option>
+                <?php
+                if($materiaux){
+                    foreach($materiaux as $value){
+                        echo '<option value="'.$value["materiaux"].'">'.$value["materiaux"].'</option>';
+                    }
+                }
+                ?>
+            </select>
+            <label>Matériaux</label>
+        </div>
+        <div class="row">
+            <div class= "input-field col s5">
+                <label for="filePath">Lien vers l'image : </label>
+                <input id="filePath" name="filePath" type="text" placeholder="image.jpg" value="<?php echo $path;?>"/>
+            </div>
+            <div class= "input-field col s5 center">
+            <p>
+                <label>
+                    <?php
+                    if($promoPdt == "on"){
+                        ?>
+                        <input type="checkbox" class="filled-in" name="promo" checked/>
+                        <?php
+                    }else{
+                        ?>
+                        <input type="checkbox" class="filled-in" name="promo"/>
+                        <?php
+                    }
+
+                    ?>
+                    <span>En Promotion</span>
+                </label>
+            </p>
+            </div>
+        
     </div>
     <div class="center">
         <img src="server/scripts/captcha.php" style="width:12.5%;">
@@ -97,6 +134,12 @@ if(!empty($_POST)){
     </div>
 
 </fieldset>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+                let elems = document.querySelectorAll('.selectable')
+                M.FormSelect.init(elems);
+                });
+    </script>
 <?php
 
     include('client/pages/footer.html');

@@ -1,50 +1,31 @@
-function getAllProducts(selector = "", strict = false) {
-    ajax({
-            type: "getProducts"
-        },
-        function(json) {
-            const placer = document.getElementById("placer");
-            placer.innerHTML = "";
-            const produits = json.content;
-            const ul = document.createElement("ul");
-            ul.classList.add("collection");
-            produits.forEach(element => {
-                let testSelector = false;
-                if(strict){
-                    testSelector = selector.split(" ").every(
-                        (select) => {
-                            return element.NomP.toLowerCase().includes(select.toLowerCase());
-                        }
-                    );
-                }else{
-                    testSelector = selector.split(" ").some(
-                        (select) => {
-                            return element.NomP.toLowerCase().includes(select.toLowerCase());
-                        }
-                    );
-                }
+function populateNavBarIcons(){
+    const iconList = document.getElementById('navIcons');
+    const page = window.location.pathname.substring(1);
+    const link = (func, icon)=>{
+        const li = document.createElement('li');
+            const a = document.createElement('a');
+                a.onclick = func;
+                const i = document.createElement('i');
+                    i.classList.add('material-icons');
+                    i.textContent = icon
+                a.appendChild(i);
+            li.appendChild(a);
+        return li;
+    };
 
-                if (testSelector) {
-                    const pdt = document.createElement('li');
-                    pdt.classList.add("collection-item");
-                    const title = document.createElement("span");
-                    title.classList.add("title");
-                    title.innerHTML = element.NomP;
-                    pdt.appendChild(title);
+    switch (page){
+        case "index.php":
+            iconList.appendChild(link(function(){test();}, 'search'));
+            iconList.appendChild(link(function(){openProfil();}, 'account_circle'));
+            break;
+        case "insertion.php":
+            iconList.appendChild(link(function(){openProfil();}, 'account_circle'));
+            break
+        default :
+            break
+    }
 
-                    const info = document.createElement('p');
-                    info.textContent = `Prix : ${element.Prix.toFixed(2)}€ ID : ${element.idP}`;
-                    pdt.appendChild(info);
-                    ul.appendChild(pdt);
-                }
 
-            });
-            placer.appendChild(ul);
-        },
-        (json) => {
-            console.error(json);
-        }
-    );
 }
 
 function openProfil(){

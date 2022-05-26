@@ -19,10 +19,13 @@ function connexionToApp($login, $pass){
 
     return false;
 }
-function addProduct($nom, $prix, $promo){
+function addProduct($nom, $prix, $promo, $type, $mat, $path){
     $qnom = quote($nom);
+    $qtype = quote($type);
+    $qmat = quote($mat);
+    $qpath = quote($path);
     $qpromo = $promo == "on" ? "1" : "0";
-    $sql = "insert into Produits (NomP, Prix, Promo) values ($qnom, $prix, $qpromo)";
+    $sql = "insert into Produits (NomP, Prix, Promo, type, materiaux, image) values ($qnom, $prix, $qpromo, $qtype, $qmat, $qpath)";
     $res = callDatabase(
         $sql,
         true,
@@ -50,6 +53,7 @@ function addProduct($nom, $prix, $promo){
         </script>
         
         <?php
+        return true;
 
     }else{
         ?>
@@ -150,8 +154,16 @@ function sideBar(){
       <a href="#email"><span class="dark-text email"><?php echo $_SESSION["login"];?></span></a>
       <a href="#name"><span class="dark-text name"><?php echo $statut;?></span></a>
     </div></li>
-    <li><a href="#!"><i class="material-icons">home</i>Accueil</a></li>
-    <li><a href="#!"><i class="material-icons">celebration</i>Promotions</a></li>
+    <li><a href="index.php"><i class="material-icons">home</i>Accueil</a></li>
+    <li><a href="panier.php"><i class="material-icons">shopping_bag</i>Panier</a></li>
+    <?php
+        if($statut == "Administrateur"){
+            ?>
+            <li><a href="insertion.php"><i class="material-icons">add_box</i>Créer Nouveau Produit</a></li>
+            <li><a href="modification.php"><i class="material-icons">edit</i>Modifier un Produit</a></li>
+            <?php
+        }
+    ?>
     <li><div class="divider"></div></li>
     <br/>
     <div class="center">
