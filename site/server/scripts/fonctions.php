@@ -28,8 +28,8 @@ function addProduct($nom, $prix, $promo, $type, $mat, $path){
     $sql = "insert into Produits (NomP, Prix, Promo, type, materiaux, image) values ($qnom, $prix, $qpromo, $qtype, $qmat, $qpath)";
     $res = callDatabase(
         $sql,
-        true,
-        false
+        false,
+        true
     );
 
     if($res){

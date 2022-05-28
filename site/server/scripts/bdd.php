@@ -1,5 +1,5 @@
 <?php
-function callDatabase($sql, $unique = false, $select = true){
+function callDatabase($sql, $select = true, $unique = false){
     $db = new PDO('sqlite:'.$_SERVER['DOCUMENT_ROOT'].'/server/bdd/bdd.db');
     $res = false;
     if($select){

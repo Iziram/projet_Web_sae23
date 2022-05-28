@@ -5,7 +5,7 @@ lottie-player {
     margin: 0 auto;
 }
 
-.img{
+.jawelry{
     width: 19% !important;
     height: 19% !important;
 }
@@ -31,4 +31,8 @@ lottie-player {
     border-radius: 4px;
     font-size: 1.6em;
     margin: 1em 1em 1em 1em;
+}
+
+.img{
+    width: 40% !important;
 }

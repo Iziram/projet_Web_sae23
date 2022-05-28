@@ -24,7 +24,7 @@ if(!empty($_POST)){
     $promoPdt = isset($_POST["promo"]) ? $_POST["promo"] : "off";
     $path = isset($_POST["filePath"]) ? $_POST["filePath"] : "";
     if(isset($_POST["captcha"]) && $_POST["captcha"] == $_SESSION["captcha"] ){
-        if($prixPdt != "" && $nomPdt != "" && $type != "" && $mat != "" && $path != ""){
+        if($prixPdt != "" && $nomPdt != "" && $type != "" && $mat != ""){
             $call = addProduct($nomPdt, $prixPdt, $promoPdt, $type, $mat, $path);
         }
         
@@ -51,14 +51,14 @@ if(!empty($_POST)){
     }
 }
 
-$types = callDatabase("select distinct type from Produits");
-$materiaux = callDatabase("select distinct materiaux from Produits");
+$types = callDatabase("select distinct type from Produits order by type ASC");
+$materiaux = callDatabase("select distinct materiaux from Produits order by materiaux ASC");
 ?>
 
 
-<h1 class="center">Ajouter un produit</h1>
+<h1 class="center">Créer un nouveau produit</h1>
 
-<form class="container" action="" method="post" enctype="multipart/form-data">
+<form class="container" action="" method="post">
     <div class="row">
         <div class= "input-field col s5">
             <label for="nomPdt">Nom du produit : </label>
@@ -120,7 +120,6 @@ $materiaux = callDatabase("select distinct materiaux from Produits");
                 </label>
             </p>
             </div>
-        
     </div>
     <div class="center">
         <img src="server/scripts/captcha.php" style="width:12.5%;">
@@ -132,8 +131,7 @@ $materiaux = callDatabase("select distinct materiaux from Produits");
     <div class="container row">
         <button class="btn col s12 center-align purple">Ajouter le produit</button>
     </div>
-
-</fieldset>
+</form>
 <script>
         document.addEventListener('DOMContentLoaded', function() {
                 let elems = document.querySelectorAll('.selectable')
@@ -141,6 +139,5 @@ $materiaux = callDatabase("select distinct materiaux from Produits");
                 });
     </script>
 <?php
-
-    include('client/pages/footer.html');
-    ?>
+include('client/pages/footer.html');
+?>
