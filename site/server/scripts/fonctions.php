@@ -6,6 +6,7 @@ function connexionToApp($login, $pass){
     $sql = "select statut from Comptes where login = ".$qlogin . " and pass = ".$qpass;
     $res = callDatabase(
         $sql,
+        true,
         true
     );
 
@@ -182,8 +183,6 @@ function sideBar(){
 function generateDynamicProductList(){
     ?>
    <ul id="test" class="sidenav">
-      <li><a href="#!">First Sidebar Link</a></li>
-      <li><a href="#!">Second Sidebar Link</a></li>
       <li class="no-padding">
         <ul class="collapsible collapsible-accordion">
           <li>
