@@ -15,13 +15,50 @@ if($contentType === "application/json"){
                     answerCreator("Erreur SQL");
                 break;
 
-            case "infoUtilisateur":
-                $ans = callDatabase("select login,statut from Comptes where login=".quote($decoded["login"]),true);
+            case "getUniqueProduct":
+                $ans = callDatabase("select * from Produits where idP= ".$decoded["id"],true,true);
                 if($ans)
                     answerCreator($ans, false);
                 else
                     answerCreator("Erreur SQL");
                 break;
+            
+            case "updateProduct":
+                $content = $decoded["product"];
+                
+                $sql = "update Produits set NomP = ".quote($content["nom"]).
+                    ", Prix = ".$content["prix"].", type = ".quote($content["type"]).
+                    ", image = ".quote($content["img"]).
+                    ", materiaux = ".quote($content["mat"]).", Promo = ".
+                    $content["promo"]." where idP = ".$content["id"];
+
+                $ans = callDatabase(
+                    $sql,
+                    false
+                );
+                if($ans)
+                    answerCreator($content, false);
+                else
+                    answerCreator("Erreur SQL -> '".$sql.";'");
+                break;
+            
+            case "categoProduits":
+                $types = callDatabase("select distinct type from Produits");
+                $materiaux = callDatabase("select distinct materiaux from Produits");
+                $prices = callDatabase("select max(prix)as maxi, min(prix) as mini from Produits",true, true);
+
+                if($types && $materiaux && $prices){
+                    $ans = array(
+                        "types" => $types,
+                        "materiaux" => $materiaux,
+                        "prix" => $prices
+                    );
+                    answerCreator($ans, false);
+                }
+                else
+                    answerCreator("Erreur SQL");
+                break;
+            
             default :
                 answerCreator("Le type donné n'est pas reconnu.");
                 break;

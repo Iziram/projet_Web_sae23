@@ -1,9 +1,38 @@
-.px-2 {
-    padding-left: 4px !important;
-    padding-right: 4px !important;
+.hid{
+    display: none !important;
+}
+lottie-player {
+    margin: 0 auto;
 }
 
-.err{
-    color: firebrick;
+.jawelry{
+    width: 19% !important;
+    height: 19% !important;
+}
+
+#test-slider {
+    height: 10px;
+}
+
+#test-slider .noUi-connect {
+    background: #c0392b;
+}
+
+#test-slider .noUi-handle {
+    height: 18px;
+    width: 18px;
+    top: -5px;
+    right: -9px; /* half the width */
+    border-radius: 9px;
+}
+
+
+#min, #max{
+    border-radius: 4px;
     font-size: 1.6em;
+    margin: 1em 1em 1em 1em;
+}
+
+.img{
+    width: 40% !important;
 }
