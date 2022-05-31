@@ -80,8 +80,8 @@ function fullProducts(){
     
     return promise;
 }
-
-function dynamicFilter(){
+function dynamicFilter(mod=false){
+    console.warn(mod);
     const cat = productCategory();
     cat.then((value)=>{
         const types = value.types.map((el) => el["type"]);
@@ -161,7 +161,7 @@ function dynamicFilter(){
                         t = t && ( filter.prix[0] <= el.Prix) && ( filter.prix[1] >= el.Prix);
                         return t
                     });
-                    showProducts(filteredProducts);
+                    //showProducts(filteredProducts, modif=mod);
                 },
                 (value)=>{
                     console.error(value);
@@ -185,7 +185,7 @@ function dynamicFilter(){
                                 t = t && ( filter.prix[0] <= el.Prix) && ( filter.prix[1] >= el.Prix);
                                 return t
                             });
-                            showProducts(filteredProducts);
+                            //showProducts(filteredProducts, modif=mod);
                         },
                         (value)=>{
                             console.error(value);
@@ -199,21 +199,29 @@ function dynamicFilter(){
     })
 }
 
-function showProducts(prods, placer = 'placer'){
+function showProducts(prods, placer = 'placer', modif=false){
     const place = document.getElementById(placer);
     place.innerHTML = "";
-    prods.forEach((el)=>{
-        const title = document.createElement('span');
-            title.classList.add('title');
-        const text = document.createTextNode(`${el.NomP}=>\n ${el.type} | ${el.materiaux} | ${el.Prix.toFixed(2)}€`);
-        const div = document.createElement('div');
-        div.classList.add('col','s2');
-        div.appendChild(document.createElement('hr'));
-        div.appendChild(title);
-        div.appendChild(text);
-        div.appendChild(document.createElement('hr'));
-        place.appendChild(div);
-    })
+    console.error(placer,modif);
+    if(modif){
+        prods.forEach((el)=>{
+            const title = document.createElement('span');
+                title.classList.add('title');
+            const text = document.createTextNode(`${el.NomP}=>\n ${el.type} | ${el.materiaux} | ${el.Prix.toFixed(2)}€`);
+            const div = document.createElement('div');
+            div.classList.add('col','s2');
+            div.appendChild(document.createElement('hr'));
+            div.appendChild(title);
+            div.appendChild(text);
+            div.appendChild(document.createElement('hr'));
+            place.appendChild(div);
+        })
+    }else{
+        prods.forEach((el)=>{
+            let option = new Option(el.NomP, el.idP);
+            place.add(option);
+        });
+    }
 }
 
 function getFilter(slider){

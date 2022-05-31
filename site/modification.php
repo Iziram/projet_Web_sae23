@@ -8,8 +8,7 @@
 <?php 
 sideBar();
 
-$products = callDatabase("select idP,NomP from Produits order by NomP ASC");
-
+generateDynamicProductList(true);
 ?>
 
 <h1 class="center">Modifier un produit</h1>
@@ -37,6 +36,21 @@ ajax qui change la page  -->
 </div>
 
 <script>
+
+function newSelect(){
+    const sel = document.getElementById('products');
+    const options = Array.from(sel.options);
+    options.forEach((el)=>{
+        console.warn(el.textContent);
+        if(el.textContent != "Bague Argent"){
+            el.remove();
+        }
+    });
+
+    let elems = document.querySelectorAll('.selectable')
+    M.FormSelect.init(elems);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     let elems = document.querySelectorAll('.selectable')
     M.FormSelect.init(elems);
