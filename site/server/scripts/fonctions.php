@@ -156,7 +156,7 @@ function sideBar(){
       <a href="#name"><span class="dark-text name"><?php echo $statut;?></span></a>
     </div></li>
     <li><a href="index.php"><i class="material-icons">home</i>Accueil</a></li>
-    <li><a href="panier.php"><i class="material-icons">shopping_bag</i>Panier</a></li>
+    <!-- <li><a href="panier.php"><i class="material-icons">shopping_bag</i>Panier</a></li> -->
     <?php
         if($statut == "Administrateur"){
             ?>
@@ -182,7 +182,7 @@ function sideBar(){
 
 function generateDynamicProductList(){
     ?>
-   <ul id="test" class="sidenav">
+   <ul id="searchSlide" class="sidenav">
       <li class="no-padding">
         <ul class="collapsible collapsible-accordion">
           <li>
@@ -225,7 +225,7 @@ function generateDynamicProductList(){
     <script>
         
   document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.getElementById('test');
+    var elems = document.getElementById('searchSlide');
     var instances = M.Sidenav.init(elems);
   });
 

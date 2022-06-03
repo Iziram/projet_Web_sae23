@@ -1,125 +1,125 @@
-function populateNavBarIcons(){
+function populateNavBarIcons() {
     const iconList = document.getElementById('navIcons');
     const page = window.location.pathname.substring(1);
-    const link = (func, icon)=>{
+    const link = (func, icon) => {
         const li = document.createElement('li');
-            const a = document.createElement('a');
-                a.onclick = func;
-                const i = document.createElement('i');
-                    i.classList.add('material-icons');
-                    i.textContent = icon
-                a.appendChild(i);
-            li.appendChild(a);
+        const a = document.createElement('a');
+        a.onclick = func;
+        const i = document.createElement('i');
+        i.classList.add('material-icons');
+        i.textContent = icon
+        a.appendChild(i);
+        li.appendChild(a);
         return li;
     };
-    switch (page){
+    switch (page) {
         case "index.php":
-            iconList.appendChild(link(function(){test();}, 'search'));
-            iconList.appendChild(link(function(){openProfil();}, 'account_circle'));
+            iconList.appendChild(link(function () { openSearchSlide(); }, 'search'));
+            iconList.appendChild(link(function () { openProfil(); }, 'account_circle'));
             break;
         case "insertion.php":
-            iconList.appendChild(link(function(){openProfil();}, 'account_circle'));
+            iconList.appendChild(link(function () { openProfil(); }, 'account_circle'));
             break
         case "modification.php":
-            iconList.appendChild(link(function(){openProfil();}, 'account_circle'));
+            iconList.appendChild(link(function () { openProfil(); }, 'account_circle'));
             break
-        default :
+        default:
             break
     }
 
 
 }
 
-function openProfil(){
+function openProfil() {
     const slide = document.getElementById("profil");
-    if(slide){
+    if (slide) {
         const instance = M.Sidenav.getInstance(slide);
         instance.open();
     }
 }
-function test(){
-    const slide = document.getElementById("test");
-    if(slide){
+function openSearchSlide() {
+    const slide = document.getElementById("searchSlide");
+    if (slide) {
         const instance = M.Sidenav.getInstance(slide);
         instance.open();
     }
 }
 
-function productCategory(){
-    const promise = new Promise((resolve, reject)=>{
+function productCategory() {
+    const promise = new Promise((resolve, reject) => {
         ajax(
             {
-                type : "categoProduits",
+                type: "categoProduits",
             },
-            function(json) {
+            function (json) {
                 resolve(json.content);
             },
-            function(json) {
+            function (json) {
                 reject(json.content);
             }
         );
     })
-    
+
     return promise;
 }
 
-function fullProducts(){
-    const promise = new Promise((resolve, reject)=>{
+function fullProducts() {
+    const promise = new Promise((resolve, reject) => {
         ajax(
             {
-                type : "getProducts",
+                type: "getProducts",
             },
-            function(json) {
+            function (json) {
                 resolve(json.content);
             },
-            function(json) {
+            function (json) {
                 reject(json.content);
             }
         );
     })
-    
+
     return promise;
 }
 
-function dynamicFilter(){
+function dynamicFilter() {
     const cat = productCategory();
-    cat.then((value)=>{
+    cat.then((value) => {
         const types = value.types.map((el) => el["type"]);
         const mat = value.materiaux.map((el) => el["materiaux"]);
-        
+
         //Gestion des checkbox des materiaux
         const ulMat = document.getElementById('mat');
         ulMat.innerHTML = "";
-        mat.forEach(function (el){
+        mat.forEach(function (el) {
             const p = document.createElement('p');
-                p.classList.add("container");
-                const label = document.createElement('label');
-                    const input = document.createElement('input');
-                        input.type = "checkbox";
-                        input.classList.add('filled-in');
-                    const span = document.createElement('span');
-                        span.textContent = el;
-                    label.appendChild(input);
-                    label.appendChild(span);
-                p.appendChild(label);
+            p.classList.add("container");
+            const label = document.createElement('label');
+            const input = document.createElement('input');
+            input.type = "checkbox";
+            input.classList.add('filled-in');
+            const span = document.createElement('span');
+            span.textContent = el;
+            label.appendChild(input);
+            label.appendChild(span);
+            p.appendChild(label);
             ulMat.appendChild(p);
         });
 
         //Gestion des checkbox de type
         const ulType = document.getElementById('type');
         ulType.innerHTML = "";
-        types.forEach(function (el){
+        types.forEach(function (el) {
             const p = document.createElement('p');
-                p.classList.add("container");
-                const label = document.createElement('label');
-                    const input = document.createElement('input');
-                        input.type = "checkbox";
-                        input.classList.add('filled-in');
-                    const span = document.createElement('span');
-                        span.textContent = el;
-                    label.appendChild(input);
-                    label.appendChild(span);
-                p.appendChild(label);
+            p.classList.add("container");
+            const label = document.createElement('label');
+            const input = document.createElement('input');
+            input.type = "checkbox";
+            input.classList.add('filled-in');
+            const span = document.createElement('span');
+            span.textContent = el;
+            label.appendChild(input);
+            label.appendChild(span);
+            p.appendChild(label);
             ulType.appendChild(p);
         });
 
@@ -144,7 +144,7 @@ function dynamicFilter(){
         slider.noUiSlider.on('update', function (values, handle) {
             const value = values[handle];
             if (handle) {
-                maxi.textContent = value+ "€";
+                maxi.textContent = value + "€";
             } else {
                 mini.textContent = value + "€";
             }
@@ -154,16 +154,16 @@ function dynamicFilter(){
             let filteredProducts = [];
             products.then(
                 function (value) {
-                    filteredProducts = value.filter(function (el){
+                    filteredProducts = value.filter(function (el) {
                         let t = true;
-                        if(filter.types.length > 0) t = t && filter.types.includes(el.type);
-                        if(filter.materiaux.length > 0) t = t && filter.materiaux.includes(el.materiaux);
-                        t = t && ( filter.prix[0] <= el.Prix) && ( filter.prix[1] >= el.Prix);
+                        if (filter.types.length > 0) t = t && filter.types.includes(el.type);
+                        if (filter.materiaux.length > 0) t = t && filter.materiaux.includes(el.materiaux);
+                        t = t && (filter.prix[0] <= el.Prix) && (filter.prix[1] >= el.Prix);
                         return t
                     });
                     showProducts(filteredProducts);
                 },
-                (value)=>{
+                (value) => {
                     console.error(value);
                 }
             );
@@ -171,43 +171,43 @@ function dynamicFilter(){
 
 
         const checkboxes = Array.from(document.getElementsByClassName('filled-in'));
-            checkboxes.forEach((el) => {
-                el.addEventListener('click', function () {
-                    const filter = getFilter(slider);
-                    const products = fullProducts();
-                    let filteredProducts = [];
-                    products.then(
-                        function (value) {
-                            filteredProducts = value.filter(function (el){
-                                let t = true;
-                                if(filter.types.length > 0) t = t && filter.types.includes(el.type);
-                                if(filter.materiaux.length > 0) t = t && filter.materiaux.includes(el.materiaux);
-                                t = t && ( filter.prix[0] <= el.Prix) && ( filter.prix[1] >= el.Prix);
-                                return t
-                            });
-                            showProducts(filteredProducts);
-                        },
-                        (value)=>{
-                            console.error(value);
-                        }
-                    );
-                })
-            });
-        
-    },(value)=>{
+        checkboxes.forEach((el) => {
+            el.addEventListener('click', function () {
+                const filter = getFilter(slider);
+                const products = fullProducts();
+                let filteredProducts = [];
+                products.then(
+                    function (value) {
+                        filteredProducts = value.filter(function (el) {
+                            let t = true;
+                            if (filter.types.length > 0) t = t && filter.types.includes(el.type);
+                            if (filter.materiaux.length > 0) t = t && filter.materiaux.includes(el.materiaux);
+                            t = t && (filter.prix[0] <= el.Prix) && (filter.prix[1] >= el.Prix);
+                            return t
+                        });
+                        showProducts(filteredProducts);
+                    },
+                    (value) => {
+                        console.error(value);
+                    }
+                );
+            })
+        });
+
+    }, (value) => {
         console.error(value)
     })
 }
 
-function showProducts(prods, placer = 'placer'){
+function showProducts(prods, placer = 'placer') {
     const place = document.getElementById(placer);
     place.innerHTML = "";
-    prods.forEach((el)=>{
+    prods.forEach((el) => {
         const title = document.createElement('span');
-            title.classList.add('title');
+        title.classList.add('title');
         const text = document.createTextNode(`${el.NomP}=>\n ${el.type} | ${el.materiaux} | ${el.Prix.toFixed(2)}€`);
         const div = document.createElement('div');
-        div.classList.add('col','s2');
+        div.classList.add('col', 's2');
         div.appendChild(document.createElement('hr'));
         div.appendChild(title);
         div.appendChild(text);
@@ -216,50 +216,50 @@ function showProducts(prods, placer = 'placer'){
     })
 }
 
-function getFilter(slider){
-    const ulTypeChecks = Array.from(document.getElementById('type').childNodes).filter((el) =>{
+function getFilter(slider) {
+    const ulTypeChecks = Array.from(document.getElementById('type').childNodes).filter((el) => {
         return el.firstChild.firstChild.checked;
     });
-    const ulMatChecks = Array.from(document.getElementById('mat').childNodes).filter((el) =>{
+    const ulMatChecks = Array.from(document.getElementById('mat').childNodes).filter((el) => {
         return el.firstChild.firstChild.checked;
     });
 
     return {
-        "types" : ulTypeChecks.map((el) => {
-        return el.firstChild.lastChild.textContent;
-        }),
-        "materiaux" : ulMatChecks.map((el) => {
+        "types": ulTypeChecks.map((el) => {
             return el.firstChild.lastChild.textContent;
         }),
-        "prix" : slider.noUiSlider.get()
+        "materiaux": ulMatChecks.map((el) => {
+            return el.firstChild.lastChild.textContent;
+        }),
+        "prix": slider.noUiSlider.get()
     };
 }
 
-function getProduct(idP){
-    const promise = new Promise((resolve, reject)=>{
+function getProduct(idP) {
+    const promise = new Promise((resolve, reject) => {
         ajax(
             {
-                type : "getUniqueProduct",
-                id : idP
+                type: "getUniqueProduct",
+                id: idP
             },
-            function(json) {
+            function (json) {
                 resolve(json.content);
             },
-            function(json) {
+            function (json) {
                 reject(json.content);
             }
         );
     })
-    
+
     return promise;
 }
 
-function generateModificationForm(idP){
+function generateModificationForm(idP) {
     const promise = getProduct(idP);
 
     promise.then(
-        (item)=>{
-            
+        (item) => {
+
             const html = `
             <div><div class="row">
             <span class="FormValue hid" id="idPdt"></span>
@@ -308,90 +308,90 @@ function generateModificationForm(idP){
             `;
             const doc = HTMLParser(html);
             const placer = document.getElementById('placer');
-                placer.innerHTML = "";
-                placer.appendChild(doc);
+            placer.innerHTML = "";
+            placer.appendChild(doc);
             const nomP = document.getElementById('nomPdt');
-                nomP.value = item.NomP;
+            nomP.value = item.NomP;
             const prixP = document.getElementById('prixPdt');
-                prixP.value = item.Prix.toFixed('2');
+            prixP.value = item.Prix.toFixed('2');
             const type = document.getElementById('selectType');
             const mat = document.getElementById('selectMat');
             const file = document.getElementById('filePath');
-                file.value = item.image;
+            file.value = item.image;
             const id = document.getElementById('idPdt');
-                id.textContent = item.idP;
+            id.textContent = item.idP;
             const promo = document.getElementById('promoP');
-                promo.checked = item.Promo  ? "checked" : "";
+            promo.checked = item.Promo ? "checked" : "";
 
             const cat = productCategory();
-            cat.then(function (value){
+            cat.then(function (value) {
                 const types = value.types.map((el) => el["type"]).sort();
                 const mats = value.materiaux.map((el) => el["materiaux"]).sort();
 
-                types.forEach((el)=>{
+                types.forEach((el) => {
                     type.options.add(new Option(el, el, false, el == item.type));
                 });
-                mats.forEach((el)=>{
+                mats.forEach((el) => {
                     mat.options.add(new Option(el, el, false, el == item.materiaux));
                 });
 
                 let elems = document.querySelectorAll('.selectable');
                 M.FormSelect.init(elems);
 
-            }, 
-            (value)=>console.error(value));
-            
-            
+            },
+                (value) => console.error(value));
+
+
 
         },
-        (value) => {console.error(value);}
+        (value) => { console.error(value); }
     );
 }
 
-function updateProduct(){
+function updateProduct() {
     const obj = {
-        id : 0,
-        nom : "",
-        type : "",
-        mat : "",
-        prix : 0.0,
-        promo : 0,
+        id: 0,
+        nom: "",
+        type: "",
+        mat: "",
+        prix: 0.0,
+        promo: 0,
         img: ""
     };
 
     const values = Array.from(document.getElementsByClassName('FormValue'));
-        values.forEach(function(el){
-            switch(el.id){
-                case "nomPdt":
-                    obj.nom = el.value;
-                    break;
-                case "prixPdt":
-                    obj.prix = el.value;
-                    break;
-                case "selectType":
-                    obj.type = el.value;
-                    break;
-                case "selectMat":
-                    obj.mat = el.value;
-                    break;
-                case "filePath":
-                    obj.img = el.value;
-                    break;
-                case "promoP":
-                    obj.promo = el.checked ? 1 : 0;
-                    break;
-                case "idPdt":
-                    obj.id = el.textContent;
-                    break;
-            }
-        })
+    values.forEach(function (el) {
+        switch (el.id) {
+            case "nomPdt":
+                obj.nom = el.value;
+                break;
+            case "prixPdt":
+                obj.prix = el.value;
+                break;
+            case "selectType":
+                obj.type = el.value;
+                break;
+            case "selectMat":
+                obj.mat = el.value;
+                break;
+            case "filePath":
+                obj.img = el.value;
+                break;
+            case "promoP":
+                obj.promo = el.checked ? 1 : 0;
+                break;
+            case "idPdt":
+                obj.id = el.textContent;
+                break;
+        }
+    })
     console.warn(obj);
     ajax(
         {
-            type : "updateProduct",
-            product : obj
+            type: "updateProduct",
+            product: obj
         },
-        (json)=>{
+        (json) => {
             const prod = json.content;
             const promo = prod.promo ? "l'article est en promotion" : "l'article n'est pas en promotion";
             const html = `
@@ -429,22 +429,61 @@ function updateProduct(){
                 hideClass: {
                     popup: 'animate__animated animate__fadeOutUp'
                 }
-                });
+            });
         },
-        (json)=>{
+        (json) => {
             console.error(json);
         }
     );
 }
 
+function modificationProductList(selector = "") {
+    ajax({
+        type: "getProducts"
+    },
+        function (json) {
+            const placer = document.getElementById("products");
+            placer.innerHTML = "";
+            const produits = json.content.sort((a, b) => {
+                let fa = a.NomP.toLowerCase(),
+                    fb = b.NomP.toLowerCase();
+
+                if (fa < fb) {
+                    return -1;
+                }
+                if (fa > fb) {
+                    return 1;
+                }
+                return 0;
+            });
+            //<option value="" disabled selected>Choose your option</option>
+            const disabled = new Option("Produit à Modifier",'',true, true);
+            disabled.disabled = "disabled";
+            placer.add(disabled);
+            produits.forEach(element => {
+                if (element.NomP.toLowerCase().startsWith(selector.toLowerCase())) {
+                    placer.add(new Option(element.NomP, element.idP));
+                }
+            });
+
+            let elems = document.querySelectorAll('.selectable');
+            M.FormSelect.init(elems);
+        },
+        (json) => {
+            const label = document.getElementById("label");
+            label.innerText = "Error" + JSON.stringify(json);
+            console.error(json);
+        });
+
+}
 /**
  * Cette fonction convertie une chaine de caractère (représentant des éléments html) en élément DOM utilisable par JavaScript
  * @param {String} html la chaine de caractère représentant les élémments html
  * @param {String} mode = "text/html" Le mode par défaut est en text/html mais il existe aussi d'autres modes comme le text/XML qui peut être utilisé
  * @returns un élément DOM 
  */
- function HTMLParser(html, mode = "text/html"){
-    if(mode === "text/html"){
+function HTMLParser(html, mode = "text/html") {
+    if (mode === "text/html") {
         /** le mode text/html nous renverras un document entier (balise html + balise body + balise éléments)
         * On doit donc ruser un peu pour récuppérer l'élément que l'on souhaite :
         * On prend le premier enfant du document : ( document -> <html/> )
@@ -452,7 +491,7 @@ function updateProduct(){
         * Et enfin le premier enfant du body : ( <body/> -> <element/> )
         */
         return new DOMParser().parseFromString(html, mode).firstChild.lastChild.firstChild
-    }else{
+    } else {
         //Dans les autres cas le premier enfant sera directement l'élément
         return new DOMParser().parseFromString(html, mode).firstChild
     }
