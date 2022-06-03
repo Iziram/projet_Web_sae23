@@ -80,8 +80,8 @@ function fullProducts(){
     
     return promise;
 }
-function dynamicFilter(mod=false){
-    console.warn(mod);
+
+function dynamicFilter(){
     const cat = productCategory();
     cat.then((value)=>{
         const types = value.types.map((el) => el["type"]);
@@ -161,7 +161,7 @@ function dynamicFilter(mod=false){
                         t = t && ( filter.prix[0] <= el.Prix) && ( filter.prix[1] >= el.Prix);
                         return t
                     });
-                    //showProducts(filteredProducts, modif=mod);
+                    showProducts(filteredProducts);
                 },
                 (value)=>{
                     console.error(value);
@@ -185,7 +185,7 @@ function dynamicFilter(mod=false){
                                 t = t && ( filter.prix[0] <= el.Prix) && ( filter.prix[1] >= el.Prix);
                                 return t
                             });
-                            //showProducts(filteredProducts, modif=mod);
+                            showProducts(filteredProducts);
                         },
                         (value)=>{
                             console.error(value);
@@ -199,29 +199,21 @@ function dynamicFilter(mod=false){
     })
 }
 
-function showProducts(prods, placer = 'placer', modif=false){
+function showProducts(prods, placer = 'placer'){
     const place = document.getElementById(placer);
     place.innerHTML = "";
-    console.error(placer,modif);
-    if(modif){
-        prods.forEach((el)=>{
-            const title = document.createElement('span');
-                title.classList.add('title');
-            const text = document.createTextNode(`${el.NomP}=>\n ${el.type} | ${el.materiaux} | ${el.Prix.toFixed(2)}€`);
-            const div = document.createElement('div');
-            div.classList.add('col','s2');
-            div.appendChild(document.createElement('hr'));
-            div.appendChild(title);
-            div.appendChild(text);
-            div.appendChild(document.createElement('hr'));
-            place.appendChild(div);
-        })
-    }else{
-        prods.forEach((el)=>{
-            let option = new Option(el.NomP, el.idP);
-            place.add(option);
-        });
-    }
+    prods.forEach((el)=>{
+        const title = document.createElement('span');
+            title.classList.add('title');
+        const text = document.createTextNode(`${el.NomP}=>\n ${el.type} | ${el.materiaux} | ${el.Prix.toFixed(2)}€`);
+        const div = document.createElement('div');
+        div.classList.add('col','s2');
+        div.appendChild(document.createElement('hr'));
+        div.appendChild(title);
+        div.appendChild(text);
+        div.appendChild(document.createElement('hr'));
+        place.appendChild(div);
+    })
 }
 
 function getFilter(slider){

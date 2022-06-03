@@ -180,7 +180,7 @@ function sideBar(){
     <?php
 }
 
-function generateDynamicProductList($mod = false){
+function generateDynamicProductList(){
     ?>
    <ul id="test" class="sidenav">
       <li class="no-padding">
@@ -219,17 +219,9 @@ function generateDynamicProductList($mod = false){
 
 
 
-    <?php
-    
-    if(!$mod){
-        ?>
-            <div class="row container" id="placer">
-            </div>
-        <?php
-        
-    }
+    <div class="row container" id="placer">
 
-    ?>
+    </div>
     <script>
         
   document.addEventListener('DOMContentLoaded', function() {
@@ -241,10 +233,10 @@ function generateDynamicProductList($mod = false){
   var collapsibleElem = document.querySelector('.collapsible');
   var collapsibleInstance = M.Collapsible.init(collapsibleElem);
 
-    dynamicFilter(<?php echo $mod; ?>);
-    // fullProducts().then((value)=>{
-    //     showProducts(value, placer = <?php if(!$mod){echo "'placer'";}else{echo "'products'";}?>, modif=<?php echo $mod; ?>);
-    // }, (value)=>console.error(value))
+    dynamicFilter();
+    fullProducts().then((value)=>{
+        showProducts(value);
+    }, (value)=>console.error(value))
     </script>
     <?php
 }
