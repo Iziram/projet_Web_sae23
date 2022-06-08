@@ -149,7 +149,10 @@ function blockerPage($needAdmin = false){
 function sideBar(){
     $statut =  $_SESSION["statut"] == "admin" ? "Administrateur" : "Utilisateur";
     ?>
+    
     <ul id="profil" class="sidenav">
+    <div style="height: 25%;">
+    </div>
     <li><div class="user-view center">
       <!-- <a href="#user"><img class="circle" src="images/yuna.jpg"></a> -->
       <a href="#email"><span class="dark-text email"><?php echo $_SESSION["login"];?></span></a>
@@ -170,7 +173,7 @@ function sideBar(){
     <div class="center">
         <a class="btn purple" href="deconnexion.php"><i class="material-icons">logout</i>deconnexion</a>
     </div>
-  </ul>
+    </ul>
    <script>
       document.addEventListener('DOMContentLoaded', function() {
     var elem = document.getElementById('profil');
@@ -183,6 +186,8 @@ function sideBar(){
 function generateDynamicProductList(){
     ?>
    <ul id="searchSlide" class="sidenav">
+   <div style="height: 25%;">
+    </div>
       <li class="no-padding">
         <ul class="collapsible collapsible-accordion">
           <li>
@@ -217,17 +222,22 @@ function generateDynamicProductList(){
       </li>
     </ul>
 
+    <hr class="container">
+    <div id="carouselPlacer" class="container">
+        <h2 class="title center">Promotions</h2>
+        <div class="carousel" id="carousel">
 
-
+        </div>
+    </div>
+    <hr class="container">
+    <h2 class="title center">Tous les produits</h2>
     <div class="row container" id="placer">
 
     </div>
     <script>
         
-  document.addEventListener('DOMContentLoaded', function() {
     var elems = document.getElementById('searchSlide');
     var instances = M.Sidenav.init(elems);
-  });
 
   // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
   var collapsibleElem = document.querySelector('.collapsible');
@@ -237,6 +247,13 @@ function generateDynamicProductList(){
     fullProducts().then((value)=>{
         showProducts(value);
     }, (value)=>console.error(value))
+
+
+    
+    setInterval(()=>{
+        const carousel = M.Carousel.getInstance(document.getElementById('carousel'));
+        carousel.next();
+    }, 3000)
     </script>
     <?php
 }

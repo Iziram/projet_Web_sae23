@@ -36,3 +36,40 @@ lottie-player {
 .img{
     width: 40% !important;
 }
+
+.pdtImg{
+    height: 8vw !important;
+    width: 75% !important;
+    padding-left: 5vw;
+}
+.carousel{
+    margin-top: -9vh !important;
+}
+.carousel .pdtImg{
+    padding-left: 3vw;
+}
+.carousel .card{
+    height: 25vh !important;
+}
+
+.px{
+    padding: 0px 4rem;
+}
+
+.web-footer{
+    padding: 2vh 0; 
+    position:static !important;
+    width: 100%;
+    left: 0px;
+    bottom: 0px;
+    z-index: 100;
+    opacity: 75%;
+}
+
+* {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+*::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}

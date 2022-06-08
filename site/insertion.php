@@ -6,7 +6,7 @@
 ?>
 
 <?php sideBar()?>
-
+<script src="client/scripts/products.js"></script>
 <?php
 
 $nomPdt = "";
@@ -102,34 +102,35 @@ $materiaux = callDatabase("select distinct materiaux from Produits order by mate
                 <input id="filePath" name="filePath" type="text" placeholder="image.jpg" value="<?php echo $path;?>"/>
             </div>
             <div class= "input-field col s5 center">
-            <p>
-                <label>
-                    <?php
-                    if($promoPdt == "on"){
-                        ?>
-                        <input type="checkbox" class="filled-in" name="promo" checked/>
+                <p>
+                    <label>
                         <?php
-                    }else{
-                        ?>
-                        <input type="checkbox" class="filled-in" name="promo"/>
-                        <?php
-                    }
+                        if($promoPdt == "on"){
+                            ?>
+                            <input type="checkbox" class="filled-in" name="promo" checked/>
+                            <?php
+                        }else{
+                            ?>
+                            <input type="checkbox" class="filled-in" name="promo"/>
+                            <?php
+                        }
 
-                    ?>
-                    <span>En Promotion</span>
-                </label>
-            </p>
+                        ?>
+                        <span>En Promotion</span>
+                    </label>
+                </p>
             </div>
-    </div>
-    <div class="center">
-        <img src="server/scripts/captcha.php" style="width:12.5%;">
-    </div>
-    <div class="container row">
-        <label for="captcha">Entrez le captcha: </label>
-        <input id="captcha" name ="captcha" type="text" />
-    </div>
-    <div class="container row">
-        <button class="btn col s12 center-align purple">Ajouter le produit</button>
+        </div>
+        <div class="center">
+            <img src="server/scripts/captcha.php" style="width:12.5%;">
+        </div>
+        <div class="container row">
+            <label for="captcha">Entrez le captcha: </label>
+            <input id="captcha" name ="captcha" type="text" />
+        </div>
+        <div class="container row">
+            <button class="btn col s12 center-align purple">Ajouter le produit</button>
+        </div>
     </div>
 </form>
 <script>

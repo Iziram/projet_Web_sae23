@@ -8,7 +8,7 @@
 <?php 
 sideBar();
 ?>
-
+<script src="client/scripts/products.js"></script>
 <h1 class="center">Modifier un produit</h1>
 
 <!-- select avec le nom des produits et en value leur id
