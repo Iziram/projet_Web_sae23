@@ -8,7 +8,7 @@
 
  <script src="client/scripts/ajax.js"></script>
  <script src="client/scripts/products.js"></script>
- <script src="client/scripts/index.js"></script>
+ <script src="client/scripts/pages/index.js"></script>
 
    <?php 
   sideBar();

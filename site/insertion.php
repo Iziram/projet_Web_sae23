@@ -7,6 +7,8 @@
 
 <?php sideBar()?>
 <script src="client/scripts/products.js"></script>
+<script src="client/scripts/pages/insert.js"></script>
+
 <?php
 
 $nomPdt = "";

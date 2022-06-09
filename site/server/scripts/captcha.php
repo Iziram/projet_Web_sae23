@@ -1,4 +1,7 @@
 <?php
+/**
+ * Fichier générant un captcha (le même que dans les TD/TP)
+ */
 	session_start();//on enregistre la session, pour le code, pour la vérification du formulaire
 	//le fichier se nomme: image.php
 	//on indique au header qu'il faut afficher le code en tant qu'image
