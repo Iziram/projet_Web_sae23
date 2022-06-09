@@ -1,15 +1,13 @@
 function populateNavBarIcons() {
     const page = window.location.pathname.substring(1);
     const link = (func, icon) => {
-        const li = document.createElement('li');
         const a = document.createElement('a');
         a.onclick = func;
         const i = document.createElement('i');
         i.classList.add('material-icons');
         i.textContent = icon
         a.appendChild(i);
-        li.appendChild(a);
-        return li;
+        return a;
     };
     switch (page) {
         case "index.php":

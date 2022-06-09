@@ -3,8 +3,7 @@ function promotionCarousel(promotions){
         carousel.innerHTML = ""
         const promos = promotions.filter((el)=>el.Promo == 1);
         if(promos.length > 0){
-            promotions.forEach(element => {
-                if(!element.Promo) return;
+            promos.forEach(element => {
                 const a = document.createElement('a');
                     a.classList.add('carousel-item');
                     a.appendChild(productCard(element, true));
@@ -51,6 +50,9 @@ function productCard(el, carousel=false){
                     contentTitle.classList.add('card-title','activator','grey-text','text-darken-4','center');
                 cardContent.appendChild(contentTitle);
             card.appendChild(cardContent);
+
+
+
             let types = `<div class="row">
             <p class="col s6 center">${el.type}</p>
             <p class="col s6 center">${el.materiaux}</p>
@@ -197,12 +199,23 @@ function dynamicFilter() {
     })
 }
 
+/**
+ * Cette fonction permet d'afficher les produits (dans le carousel et dans la grille de produits)
+ * @param {Array} prods -> tableau des objets javascript représentant les produits
+ * @param {String} placer -> une chaine de caractères correspondant à l'id du div où seront placer les produits 
+ */
 function showProducts(prods, placer = 'placer') {
+
+    //On récupère l'objet DOM correspondant à la grille de produits
     const place = document.getElementById(placer);
+    //On la vide
     place.innerHTML = "";
+
+    //Pour chaque produit dans le tableau de produits
     prods.forEach((el) => {
-        
+        //On ajoute dans la grille une carte représentant le produit
         place.appendChild(productCard(el));
     });
+    //On affiche le carousel des promotions
     promotionCarousel(prods);
 }
