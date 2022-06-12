@@ -58,4 +58,3 @@ function quote($param){
     $db = new PDO('sqlite:'.$_SERVER['DOCUMENT_ROOT'].'/server/bdd/bdd.db');
     return $db->quote($param);
 }
-?>

@@ -113,4 +113,3 @@ function answerCreator($content, $error = true){
         "content" => $content
     ));
 }
-?>
