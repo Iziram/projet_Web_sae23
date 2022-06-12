@@ -72,26 +72,25 @@ session_start();
             </script>
             <?php
     }
-
 ?>
 <script src="client/scripts/verifications.js"></script>
 <div class="container valign-wrapper" style="height: 87.2vh;">
     
     <div class="container z-depth-4" style="padding:1vw 1vw;border-radius:1rem;">
         <h2 class="title center"><b>Connexion</b></h2>
-        <form action="" method="post" onsubmit="return testConnectForm()">
+        <form action="<?php echo $_SERVER["PHP_SELF"];?>" method="post" onsubmit="return testConnectForm()">
             <label for="login">Login: </label>
             <input type="text" name="login" id="login" placeholder="Nom d'utilisateur" required onkeyup="verifierLogin(this.value)"/>
-            <div id="progressBar_login_div" class="progress hid" name="progressBar">
-                <div id="progressBar_login_bar"class="determinate" style="width: 50%"></div>
+            <div id="progressBar_login_div" class="progress hid progressBar">
+                <div id="progressBar_login_bar" class="determinate" style="width: 50%"></div>
             </div>
-            <p id="progressBar_login_text" class="hid" name="progressBar"></p>
+            <p id="progressBar_login_text" class="hid progressBar"></p>
 
             <label for="pass">Mot de passe: </label>
             <input type="password" name="pass" id="pass" required/>
             <br/><br/>
             <div class="row">
-                <input class="btn col s3 offset-s9 purple lighten-3" type="submit" class="right" value="Se connecter"/>
+                <input class="btn col s3 offset-s9 purple lighten-3 right" type="submit" value="Se connecter"/>
             </div>
         </form>
     </div>

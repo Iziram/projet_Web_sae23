@@ -151,8 +151,8 @@ function sideBar(){
     ?>
     
     <ul id="profil" class="sidenav">
-    <div style="height: 25%;">
-    </div>
+    <li style="height: 25%;">
+    </li>
     <li><div class="user-view center">
       <!-- <a href="#user"><img class="circle" src="images/yuna.jpg"></a> -->
       <a href="#email"><span class="dark-text email"><?php echo $_SESSION["login"];?></span></a>
@@ -169,10 +169,11 @@ function sideBar(){
         }
     ?>
     <li><div class="divider"></div></li>
-    <br/>
+    <li>
     <div class="center">
         <a class="btn purple" href="deconnexion.php"><i class="material-icons">logout</i>deconnexion</a>
     </div>
+    </li>
     </ul>
    <script>
       document.addEventListener('DOMContentLoaded', function() {
@@ -185,41 +186,41 @@ function sideBar(){
 
 function generateDynamicProductList(){
     ?>
-   <ul id="searchSlide" class="sidenav">
-   <div style="height: 25%;">
-    </div>
-      <li class="no-padding">
-        <ul class="collapsible collapsible-accordion">
-          <li>
-            <a class="collapsible-header">Type<i class="material-icons">arrow_drop_down</i></a>
-            <div class="collapsible-body">
-              <ul id="type">
-                
-              </ul>
-            </div>
-          </li>
-          <li>
-            <a class="collapsible-header">Matériaux<i class="material-icons">arrow_drop_down</i></a>
-            <div class="collapsible-body">
-              <ul id="mat">
-                
-              </ul>
-            </div>
-          </li>
-          <li>
-            <a class="collapsible-header">Prix<i class="material-icons">arrow_drop_down</i></a>
-            <div class="collapsible-body">
-              <ul>
-                <li class="container center">
-                    <br>
-                    <div id="test-slider" class="slider-round"></div>
-                    <span id="min" class="hoverable">A</span><span>|</span><span id="max" class="hoverable">B</span>
+    <ul id="searchSlide" class="sidenav">
+        <li style="height: 25%;">
+        </li>
+        <li class="no-padding">
+            <ul class="collapsible collapsible-accordion">
+                <li>
+                    <a class="collapsible-header">Type<i class="material-icons">arrow_drop_down</i></a>
+                    <div class="collapsible-body">
+                        <ul id="type">
+                        
+                        </ul>
+                    </div>
                 </li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-      </li>
+                <li>
+                    <a class="collapsible-header">Matériaux<i class="material-icons">arrow_drop_down</i></a>
+                    <div class="collapsible-body">
+                        <ul id="mat">
+                        
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a class="collapsible-header">Prix<i class="material-icons">arrow_drop_down</i></a>
+                    <div class="collapsible-body">
+                      <ul>
+                        <li class="container center">
+                            <br>
+                            <div id="test-slider" class="slider-round"></div>
+                            <span id="min" class="hoverable">A</span><span>|</span><span id="max" class="hoverable">B</span>
+                        </li>
+                      </ul>
+                    </div>
+                </li>
+            </ul>
+        </li>
     </ul>
 
     <hr class="container">

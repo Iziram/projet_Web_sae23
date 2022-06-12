@@ -4,7 +4,7 @@ function verifierLogin(login){
         spe : "il vous manque un caractère spécial (. @ & * - _ $ )"
     }
     let progression = 0;
-    if(/[A-Z]{1,}/.test(login)){
+    if(/[A-Z]/.test(login)){
         progression += 50;
         message.maj = "";
     } 
@@ -14,7 +14,7 @@ function verifierLogin(login){
     }
     const bar = document.getElementById('progressBar_login_bar');
         bar.style.width = `${progression}%`;
-    const progr_div = Array.from(document.getElementsByName("progressBar"));
+    const progr_div = Array.from(document.getElementsByClassName("progressBar"));
     const text = document.getElementById("progressBar_login_text");
     if(progression < 100){
         progr_div.forEach(el => {

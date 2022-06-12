@@ -60,7 +60,7 @@ $materiaux = callDatabase("select distinct materiaux from Produits order by mate
 
 <h1 class="center">Créer un nouveau produit</h1>
 
-<form class="container" action="" method="post">
+<form class="container" action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
     <div class="row">
         <div class= "input-field col s5">
             <label for="nomPdt">Nom du produit : </label>
@@ -124,11 +124,11 @@ $materiaux = callDatabase("select distinct materiaux from Produits order by mate
             </div>
         </div>
         <div class="center">
-            <img src="server/scripts/captcha.php" style="width:12.5%;">
+            <img src="server/scripts/captcha.php" style="width:12.5%;" alt="captcha">
         </div>
         <div class="container row">
             <label for="captcha">Entrez le captcha: </label>
-            <input id="captcha" name ="captcha" type="text" />
+            <input id="captcha" name ="captcha" type="text"/>
         </div>
         <div class="container row">
             <button class="btn col s12 center-align purple">Ajouter le produit</button>
