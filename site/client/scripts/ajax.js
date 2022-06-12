@@ -11,8 +11,8 @@ function ajax(params = {
             }
         };
         fetch(url,
-                header
-            ).then(ans => ans.json())
+            header
+        ).then(ans => ans.json())
             .then(ans => {
                 if (ans.type != "Error") {
                     success(ans);
@@ -32,7 +32,7 @@ function ajax(params = {
         }
 
         if (req) {
-            req.onreadystatechange = function() {
+            req.onreadystatechange = function () {
                 let ready = req.readyState;
                 if (ready == 4) {
                     const status = req.status;

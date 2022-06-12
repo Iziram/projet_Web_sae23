@@ -1,11 +1,11 @@
 <?php
-    session_start();
-    include('client/pages/header.html');
-    include('server/scripts/fonctions.php');
-    blockerPage(true, "index.php");
+session_start();
+include('client/pages/header.html');
+include('server/scripts/fonctions.php');
+blockerPage(true, "index.php");
 ?>
 
-<?php 
+<?php
 sideBar();
 ?>
 <script src="client/scripts/products.js"></script>
@@ -19,7 +19,7 @@ ajax qui change la page  -->
 <br>
 <div class="container" id="placer">
     <div class="row">
-        <input class="col s6 offset-s3 center" type="text" placeholder="Filtrer les noms de produits" id="selector" onkeyup="modificationProductList(this.value)"/>
+        <input class="col s6 offset-s3 center" type="text" placeholder="Filtrer les noms de produits" id="selector" onkeyup="modificationProductList(this.value)" />
     </div>
     <br>
     <div class="row">
@@ -33,7 +33,7 @@ ajax qui change la page  -->
 </div>
 
 <script>
-modificationProductList();
+    modificationProductList();
 </script>
 
 <?php

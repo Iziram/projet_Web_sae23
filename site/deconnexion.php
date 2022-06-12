@@ -3,10 +3,10 @@ session_start();
 
 include('client/pages/header.html');
 
-if(!empty($_SESSION)){
+if (!empty($_SESSION)) {
     $_SESSION = [];
     session_destroy();
-    ?>
+?>
 
     <script>
         Swal.fire({
@@ -15,23 +15,23 @@ if(!empty($_SESSION)){
             icon: "success",
             button: "OK",
             timer: 5000,
-            timerProgressBar : true,
+            timerProgressBar: true,
             showClass: {
                 popup: 'animate__animated animate__fadeInDown'
             },
             hideClass: {
                 popup: 'animate__animated animate__fadeOutUp'
             }
-          }).then(
-              ()=>{
-                  window.location = "connexion.php";
-              }
-          );
+        }).then(
+            () => {
+                window.location = "connexion.php";
+            }
+        );
     </script>
 
-    <?php
-}else{
-    ?>
+<?php
+} else {
+?>
 
     <script>
         Swal.fire({
@@ -40,21 +40,21 @@ if(!empty($_SESSION)){
             icon: "info",
             button: "OK",
             timer: 5000,
-            timerProgressBar : true,
+            timerProgressBar: true,
             showClass: {
                 popup: 'animate__animated animate__fadeInDown'
             },
             hideClass: {
                 popup: 'animate__animated animate__fadeOutUp'
             }
-          }).then(
-              ()=>{
-                  window.location = "connexion.php";
-              }
-          );
+        }).then(
+            () => {
+                window.location = "connexion.php";
+            }
+        );
     </script>
 
-    <?php
+<?php
 }
 
 

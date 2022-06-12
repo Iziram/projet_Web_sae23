@@ -1,11 +1,12 @@
-.hid{
+.hid {
     display: none !important;
 }
+
 lottie-player {
     margin: 0 auto;
 }
 
-.jawelry{
+.jawelry {
     width: 19% !important;
     height: 19% !important;
 }
@@ -22,54 +23,60 @@ lottie-player {
     height: 18px;
     width: 18px;
     top: -5px;
-    right: -9px; /* half the width */
+    right: -9px;
+    /* half the width */
     border-radius: 9px;
 }
 
 
-#min, #max{
+#min,
+#max {
     border-radius: 4px;
     font-size: 1.6em;
     margin: 1em 1em 1em 1em;
 }
 
-.img{
+.img {
     width: 40% !important;
 }
 
-.pdtImg{
+.pdtImg {
     height: 8vw !important;
     width: 75% !important;
     padding-left: 5vw;
 }
-.carousel{
+
+.carousel {
     margin-top: -9vh !important;
 }
-.carousel .pdtImg{
+
+.carousel .pdtImg {
     padding-left: 3vw;
 }
-.carousel .card{
+
+.carousel .card {
     height: 25vh !important;
 }
 
-.px{
+.px {
     padding: 0px 4rem;
 }
 
-.web-footer{
-    padding: 2vh 0; 
-    position:static !important;
+.web-footer {
+    padding: 2vh 0;
     width: 100%;
-    left: 0px;
-    bottom: 0px;
     z-index: 100;
     opacity: 75%;
 }
 
 * {
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* Internet Explorer 10+ */
+    scrollbar-width: none;
+    /* Firefox */
 }
-*::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
+
+*::-webkit-scrollbar {
+    display: none;
+    /* Safari and Chrome */
 }

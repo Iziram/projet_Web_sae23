@@ -46,7 +46,7 @@ function openSearchSlide() {
  * @param {String} mode = "text/html" Le mode par défaut est en text/html mais il existe aussi d'autres modes comme le text/XML qui peut être utilisé
  * @returns un élément DOM 
  */
- function HTMLParser(html, mode = "text/html") {
+function HTMLParser(html, mode = "text/html") {
     if (mode === "text/html") {
         /** le mode text/html nous renverras un document entier (balise html + balise body + balise éléments)
         * On doit donc ruser un peu pour récuppérer l'élément que l'on souhaite :

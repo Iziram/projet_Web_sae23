@@ -6,51 +6,56 @@ function generateModificationForm(idP) {
         (item) => {
 
             const html = `
-            <div><div class="row">
-            <span class="FormValue hid" id="idPdt"></span>
-        <div class= "input-field col s5">
-            <label for="nomPdt" class="active">Nom du produit : </label>
-            <input class="FormValue" id="nomPdt" name="nom" type="text" placeholder="Collier avec Emeraude" value="bite"/>
-        </div>
-        <div class= "input-field col s5">
-            <label for="prixPdt" class="active">Prix du produit : </label>
-            <input class="FormValue"  id="prixPdt" name ="prix" type="number" step="0.01" placeholder="6940.69"/>
-        </div>
-    </div>
-    <div class="row">
-        <div class="input-field col s5">
-            <select id="selectType" name="selectType" class="selectable FormValue" >
-            </select>
-            <label class="active">Type</label>
-        </div>
-        <div class="input-field col s5">
-            <select id="selectMat" name="selectMat" class="selectable FormValue" >
-            </select>
-            <label class="active">Matériaux</label>
-        </div>
-        <div class="row">
-            <div class= "input-field col s5">
-                <label class="active" for="filePath">Lien vers l'image : </label>
-                <input class="FormValue"  id="filePath" name="filePath" type="text" placeholder="image.jpg"/>
+        <div>
+            <div class="row">
+                <span class="FormValue hid" id="idPdt"></span>
+                <div class="input-field col s5">
+                    <label for="nomPdt" class="active">Nom du produit : </label>
+                    <input class="FormValue" id="nomPdt" name="nom" type="text" placeholder="Collier avec Emeraude"
+                        value="" />
+                </div>
+                <div class="input-field col s5">
+                    <label for="prixPdt" class="active">Prix du produit : </label>
+                    <input class="FormValue" id="prixPdt" name="prix" type="number" step="0.01" placeholder="6940.69" />
+                </div>
             </div>
-            <div class= "input-field col s5 center">
-            <p>
-                
-                <label for="promoP">
-                    <input class="FormValue"  type="checkbox" class="filled-in"id="promoP"/>
-                    <span>En Promotion</span>
-                </label>
-            </p>
+            <div class="row">
+                <div class="input-field col s5">
+                    <select id="selectType" name="selectType" class="selectable FormValue">
+                    </select>
+                    <label class="active">Type</label>
+                </div>
+                <div class="input-field col s5">
+                    <select id="selectMat" name="selectMat" class="selectable FormValue">
+                    </select>
+                    <label class="active">Matériaux</label>
+                </div>
+                <div class="row">
+                    <div class="input-field col s5">
+                        <label class="active" for="filePath">Lien vers l'image : </label>
+                        <input class="FormValue" id="filePath" name="filePath" type="text" placeholder="image.jpg" />
+                    </div>
+                    <div class="input-field col s5 center">
+                        <p>
+        
+                            <label for="promoP">
+                                <input class="FormValue" type="checkbox" class="filled-in" id="promoP" />
+                                <span>En Promotion</span>
+                            </label>
+                        </p>
+                    </div>
+                </div>
+                <div class="container row">
+                    <button class="btn col s12 center-align purple" onclick="updateProduct();">Modifier le produit</button>
+                </div>
+                <div class="container row">
+                    <button class="btn col s6 offset-s3 center-align purple" onclick="location.reload();">Choisir un autre
+                        produit</button>
+                </div>
             </div>
-    </div>
-    <div class="container row">
-        <button class="btn col s12 center-align purple" onclick="updateProduct();">Modifier le produit</button>
-    </div>
-    <div class="container row">
-        <button class="btn col s6 offset-s3 center-align purple" onclick="location.reload();">Choisir un autre produit</button>
-    </div>
-    </div>
-            `;
+        </div>`;
+            
+            
             const doc = HTMLParser(html);
             const placer = document.getElementById('placer');
             placer.innerHTML = "";
@@ -202,7 +207,7 @@ function modificationProductList(selector = "") {
                 return 0;
             });
             //<option value="" disabled selected>Choose your option</option>
-            const disabled = new Option("Produit à Modifier",'',true, true);
+            const disabled = new Option("Produit à Modifier", '', true, true);
             disabled.disabled = "disabled";
             placer.add(disabled);
             produits.forEach(element => {

@@ -1,67 +1,67 @@
-function promotionCarousel(promotions){
+function promotionCarousel(promotions) {
     const carousel = document.getElementById('carousel')
-        carousel.innerHTML = ""
-        const promos = promotions.filter((el)=>el.Promo == 1);
-        if(promos.length > 0){
-            promos.forEach(element => {
-                const a = document.createElement('a');
-                    a.classList.add('carousel-item');
-                    a.appendChild(productCard(element, true));
-                
-                carousel.appendChild(a);
-            });
-        }else{
+    carousel.innerHTML = ""
+    const promos = promotions.filter((el) => el.Promo == 1);
+    if (promos.length > 0) {
+        promos.forEach(element => {
             const a = document.createElement('a');
-                    a.classList.add('carousel-item');
-                    a.appendChild(productCard({},true));
-                
-                carousel.appendChild(a);
-        }
-    
+            a.classList.add('carousel-item');
+            a.appendChild(productCard(element, true));
+
+            carousel.appendChild(a);
+        });
+    } else {
+        const a = document.createElement('a');
+        a.classList.add('carousel-item');
+        a.appendChild(productCard({}, true));
+
+        carousel.appendChild(a);
+    }
+
     M.Carousel.init(carousel, {
         dist: 0,
     });
-    
+
 }
 
-function productCard(el, carousel=false){
+function productCard(el, carousel = false) {
     const col = document.createElement('div');
-        if(carousel){
-            col.classList.add('col');
-        }else{
-            col.classList.add('col','s3');
-        }
-        
-        const card = document.createElement('div');
-            card.classList.add('card','small');
-            const cardImg = document.createElement('div');
-                cardImg.classList.add('card-image','waves-effect', 'waves-block','waves-light');
-                const img = document.createElement('img');
-                    img.classList.add('activator','pdtImg');
-                    img.src = "server/images/"+el.image;
-                    img.alt = "L'image n'a pas pu être chargée";
-                cardImg.appendChild(img);
-            card.appendChild(cardImg);
+    if (carousel) {
+        col.classList.add('col');
+    } else {
+        col.classList.add('col', 's3');
+    }
 
-            const cardContent = document.createElement('div');
-                cardContent.classList.add('card-content');
-                const contentTitle = document.createElement('span');
-                    contentTitle.textContent = el.NomP;
-                    contentTitle.classList.add('card-title','activator','grey-text','text-darken-4','center');
-                cardContent.appendChild(contentTitle);
-            card.appendChild(cardContent);
+    const card = document.createElement('div');
+    card.classList.add('card', 'small');
+    const cardImg = document.createElement('div');
+    cardImg.classList.add('card-image', 'waves-effect', 'waves-block', 'waves-light');
+    const img = document.createElement('img');
+    img.classList.add('activator', 'pdtImg');
+    img.src = "server/images/" + el.image;
+    img.alt = "L'image n'a pas pu être chargée";
+    cardImg.appendChild(img);
+    card.appendChild(cardImg);
+
+    const cardContent = document.createElement('div');
+    cardContent.classList.add('card-content');
+    const contentTitle = document.createElement('span');
+    contentTitle.textContent = el.NomP;
+    contentTitle.classList.add('card-title', 'activator', 'grey-text', 'text-darken-4', 'center');
+    cardContent.appendChild(contentTitle);
+    card.appendChild(cardContent);
 
 
 
-            let types = `<div class="row">
+    let types = `<div class="row">
             <p class="col s6 center">${el.type}</p>
             <p class="col s6 center">${el.materiaux}</p>
         </div>`;
-            if(carousel) types="";
+    if (carousel) types = "";
 
-            let promo = `<span class="new badge red" data-badge-caption="Promotion"></span>`;
-            if(!el.Promo) promo = "";
-            const html = `
+    let promo = `<span class="new badge red" data-badge-caption="Promotion"></span>`;
+    if (!el.Promo) promo = "";
+    const html = `
                 <div class="card-reveal">
                 ${promo}
                 <div class="row">
@@ -75,8 +75,8 @@ function productCard(el, carousel=false){
                 ${types}
                 </div>
                 `;
-            card.appendChild(HTMLParser(html));
-        col.appendChild(card);
+    card.appendChild(HTMLParser(html));
+    col.appendChild(card);
 
     return col;
 }

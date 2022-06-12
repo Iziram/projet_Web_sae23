@@ -10,5 +10,3 @@ function writeLog($message){
     );
     fclose($log);
 }
-
-?>
