@@ -2,8 +2,9 @@
 session_start();
 
 include('client/pages/header.html');
-
+// Si l'utilisateur à une session :
 if (!empty($_SESSION)) {
+    //On détruit la session et on affiche un message avant de le rediriger vers la page index
     $_SESSION = [];
     session_destroy();
 ?>
@@ -31,6 +32,7 @@ if (!empty($_SESSION)) {
 
 <?php
 } else {
+    //Si l'utilisateur n'a pas de session alors on lui affiche le message correspondant et on le redirige vers connexion.php
 ?>
 
     <script>

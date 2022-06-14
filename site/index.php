@@ -12,6 +12,7 @@
 
  <?php
    sideBar();
+   //Affichage du carousel des produits en promotion, du tableau de produit et du menu de filtrage (voir fonction)
    generateDynamicProductList();
    ?>
 
