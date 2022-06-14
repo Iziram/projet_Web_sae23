@@ -1,33 +1,29 @@
+/* classe qui permet de cacher un element */
 .hid {
     display: none !important;
 }
-
+/* mise à jour des marges du lottie pour rendre compatible avec materialize */
 lottie-player {
     margin: 0 auto;
 }
 
-.jawelry {
-    width: 19% !important;
-    height: 19% !important;
-}
+/* Styles pour le slider des prix */
 
-#test-slider {
+#sliderPrix {
     height: 10px;
 }
 
-#test-slider .noUi-connect {
+#sliderPrix .noUi-connect {
     background: #c0392b;
 }
 
-#test-slider .noUi-handle {
+#sliderPrix .noUi-handle {
     height: 18px;
     width: 18px;
     top: -5px;
     right: -9px;
-    /* half the width */
     border-radius: 9px;
 }
-
 
 #min,
 #max {
@@ -36,16 +32,18 @@ lottie-player {
     margin: 1em 1em 1em 1em;
 }
 
+/* Gestion de l'image dans le Swal de modification */
 .img {
     width: 40% !important;
 }
-
+/* Gestion des images dans les cartes de produit */
 .pdtImg {
     height: 8vw !important;
     width: 75% !important;
     padding-left: 5vw;
 }
 
+/* Styles pour le carousel */
 .carousel {
     margin-top: -9vh !important;
 }
@@ -58,17 +56,19 @@ lottie-player {
     height: 25vh !important;
 }
 
+/* Classe pour avoir un padding horizontal */
 .px {
     padding: 0px 4rem;
 }
 
+/* Classe pour le footer  */
 .web-footer {
     padding: 2vh 0;
     width: 100%;
     z-index: 100;
     opacity: 75%;
 }
-
+/* Mise à jour du scrolling pour retirer la scroll bar mais pouvoir scroll */
 * {
     -ms-overflow-style: none;
     /* Internet Explorer 10+ */
@@ -78,5 +78,5 @@ lottie-player {
 
 *::-webkit-scrollbar {
     display: none;
-    /* Safari and Chrome */
+    /* Safari et Chrome */
 }

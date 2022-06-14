@@ -1,5 +1,11 @@
+/**
+ * Fonction qui permet d'ajouter les icones des sliders sur les pages qui en ont
+ */
 function populateNavBarIcons() {
+    //On récupère le nom de la page actuelle
     const page = window.location.pathname.substring(1);
+
+    //On créer une petite fonction anonyme qui sert à générer une icone en fonction uniquement d'un nom d'icône et d'une fonction associée
     const link = (func, icon) => {
         const a = document.createElement('a');
         a.onclick = func;
@@ -9,31 +15,28 @@ function populateNavBarIcons() {
         a.appendChild(i);
         return a;
     };
+    //En fonction du nom de la page on ajoute (ou non) une icône dans les "li" respectif
     switch (page) {
         case "index.php":
-            document.getElementById('searchLI').appendChild(link(function () { openSearchSlide(); }, 'search'));
-            document.getElementById('profileLI').appendChild(link(function () { openProfil(); }, 'account_circle'));
+            document.getElementById('searchLI').appendChild(link(function () { openSlide('searchSlide'); }, 'search'));
+            document.getElementById('profileLI').appendChild(link(function () { openSlide(); }, 'account_circle'));
             break;
         case "insertion.php":
-            document.getElementById('profileLI').appendChild(link(function () { openProfil(); }, 'account_circle'));
+            document.getElementById('profileLI').appendChild(link(function () { openSlide(); }, 'account_circle'));
             break;
         case "modification.php":
-            document.getElementById('profileLI').appendChild(link(function () { openProfil(); }, 'account_circle'));
+            document.getElementById('profileLI').appendChild(link(function () { openSlide(); }, 'account_circle'));
             break;
         default:
             break
     }
 }
-
-function openProfil() {
-    const slide = document.getElementById("profil");
-    if (slide) {
-        const instance = M.Sidenav.getInstance(slide);
-        instance.open();
-    }
-}
-function openSearchSlide() {
-    const slide = document.getElementById("searchSlide");
+/**
+ * Fonction qui ouvre un slider
+ * @param {string} slideId id du slider à ouvrir, par défaut le slider du profil
+ */
+function openSlide(slideId = "profil") {
+    const slide = document.getElementById(slideId);
     if (slide) {
         const instance = M.Sidenav.getInstance(slide);
         instance.open();

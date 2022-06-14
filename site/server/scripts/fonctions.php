@@ -259,7 +259,7 @@ function generateDynamicProductList()
                         <ul>
                             <li class="container center">
                                 <br>
-                                <div id="test-slider" class="slider-round"></div>
+                                <div id="sliderPrix" class="slider-round"></div>
                                 <span id="min" class="hoverable">A</span><span>|</span><span id="max" class="hoverable">B</span>
                             </li>
                         </ul>
